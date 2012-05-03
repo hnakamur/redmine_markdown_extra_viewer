@@ -1,12 +1,12 @@
 require 'redmine'
-require 'bluefeather'
+require 'rdiscount''
 
 RepositoriesController.class_eval do
   alias markdown_extra_viewer_orig_entry entry
   def entry
     markdown_extra_viewer_orig_entry
     if not performed? and @path =~ /\.(md|markdown)\z/
-      @content = BlueFeather.parse @content
+      @content = RDiscount.new(@content, :smart).to_html
       render :action => "entry_markdown"
     end
   end
@@ -14,9 +14,9 @@ end
 
 Redmine::Plugin.register :redmine_markdown_extra_viewer do
   name 'Redmine Markdown Extra Viewer plugin'
-  author 'TOMITA Masahiro'
+  author 'Hiroaki Nakamura'
   description 'Redmine show Markdown Extra in repository'
   version '0.0.1'
-  url 'http://github.com/tmtm/redmine_markdown_extra_viewer'
-  author_url 'http://github.com/tmtm'
+  url 'http://github.com/hnakamur/redmine_markdown_extra_viewer'
+  author_url 'http://github.com/hnakamur'
 end
