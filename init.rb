@@ -5,7 +5,7 @@ RepositoriesController.class_eval do
   alias markdown_extra_viewer_orig_entry entry
   def entry
     markdown_extra_viewer_orig_entry
-    if not performed? and @path =~ /\.(md|markdown)\z/
+    if not performed? and @path =~ /\.(md|mkdn|markdown)\z/
       @content = RDiscount.new(@content).to_html
       render :action => "entry_markdown"
     end
