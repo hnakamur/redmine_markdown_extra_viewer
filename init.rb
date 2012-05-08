@@ -6,7 +6,7 @@ RepositoriesController.class_eval do
   def entry
     markdown_extra_viewer_orig_entry
     if not performed? and @path =~ /\.(md|markdown)\z/
-      @content = RDiscount.new(@content, :smart).to_html
+      @content = RDiscount.new(@content).to_html
       render :action => "entry_markdown"
     end
   end
