@@ -1,5 +1,5 @@
 require 'redmine'
-require 'rdiscount''
+require 'rdiscount'
 
 RepositoriesController.class_eval do
   alias markdown_extra_viewer_orig_entry entry
